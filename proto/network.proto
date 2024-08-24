@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package network;
+
+service Network {
+    rpc Join (JoinRequest) returns (JoinResponse);
+    rpc SendMessage (Message) returns (Empty);
+    rpc ReceiveMessages (stream Message) returns (Empty);
+}
+
+message JoinRequest {
+    string client_address = 1;
+}
+
+message JoinResponse {
+    string client_id = 1;
+}
+
+message Message {
+    string sender_id = 1;
+    string receiver_id = 2;
+    string text = 3;
+}
+
+message Empty {}
