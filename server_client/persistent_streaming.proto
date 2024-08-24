@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+service PersistentChatService {
+    rpc RegisterClient (ClientMessage) returns (ServerMessage);
+    rpc Chat (stream ClientMessage) returns (stream ServerMessage);
+}
+
+message ClientMessage {
+    string user = 1;
+    string message = 2;
+}
+
+message ServerMessage {
+    string message = 1;
+    string from_user = 2;
+}
